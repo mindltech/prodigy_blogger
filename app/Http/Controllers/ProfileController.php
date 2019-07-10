@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view ('profile');
     }
 
     /**
@@ -24,7 +29,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -57,7 +62,8 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        //
+        // dd();
+        return view ('edit-profile', ['user' => auth()->user()]);
     }
 
     /**
@@ -69,7 +75,41 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|max:15|string',
+            'gender' => 'required|string',
+            'bio' => 'required|string|max:255',
+            'address' => 'required|string|max:255'
+        ]);
+
+        // dd(auth()->user()->profile->avatar);
+   
+
+        if ($request->hasFile('avatar')) {
+            $avatar_url = $request->file('avatar')->store('public/images/avatars');
+        } else $avatar_url = Storage::url(auth()->user()->profile->avatar);
+
+        $updated = $profile->update([
+            // update the values here
+            'name' =>$data['name'],
+            'username' =>$data['username'],
+            'email' =>$data['email'],
+            'phone_number' =>$data['phone'],
+            'gender' =>$data['gender'],
+            'bio' =>$data['bio'],
+            'address' =>$data['address'],
+            'avatar' =>$avatar_url
+        ]);
+
+        if ($updated) {
+            return redirect('/profile')->with(['success' => 'Profile updated!']);
+        }
+
+        return back()->with(['error' => 'something went wrong!']);
     }
 
     /**
