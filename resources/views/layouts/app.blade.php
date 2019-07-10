@@ -49,12 +49,21 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item ">
+                                <img style="height: 20px; width: 20px; border-radius: 50px; margin-top: 10px;" class="rounded-circles" src="{{ Storage::url(auth()->user()->profile->avatar) }}">
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->profile->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <!-- Profile -->
+                                    <a class="dropdown-item" href="{{ url('/profile') }}">
+                                        {{ __('Profile') }}
+                                    </a>
+
+                                    <!-- Logout -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -74,6 +83,7 @@
 
         <main class="py-4">
             @yield('content')
+            
         </main>
     </div>
 </body>

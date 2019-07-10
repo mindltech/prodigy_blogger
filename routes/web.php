@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/profile', function () {
+//     return view('welcome');
+// });
+
+Auth::routes();
+
+Route::get('/profile', 'ProfileController@index')->name('profile');
+
+Auth::routes();
+
+Route::get('/edit-profile', 'ProfileController@edit')->name('edit-profile');
+
+Route::post('/profile/{profile}/update', 'ProfileController@update');
