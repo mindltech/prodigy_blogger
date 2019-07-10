@@ -16,6 +16,7 @@ Route::get('/create/post', 'PostController@create');
 
 Auth::routes(['verify' => true]);
 
+ft-user-functionality
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/dimola', 'PostController@index');
 // Route::get('/create_post', 'PostController@create');  
