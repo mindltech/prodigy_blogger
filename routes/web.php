@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index');
+Route::get('/create/post', 'PostController@create');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+// Route::get('/dimola', 'PostController@index');
+// Route::get('/create_post', 'PostController@create');  
+Route::post('/store/post', 'PostController@store');
+Route::get('/posts/{post}/show', 'PostController@show');
+Route::get('/edit/post/{id}', 'PostController@edit');
+Route::patch('/', 'PostController@update');
+Route::delete('/', 'PostController@destroy');
