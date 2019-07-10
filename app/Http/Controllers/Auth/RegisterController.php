@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -52,13 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'gender' => [
-                'required', 
-                'string', 
-                // Rule::in(['male', 'female',]),
-            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,36 +63,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        return User::create([
             'name' => $data['name'],
-            'username' => $data['username'],
             'email' => $data['email'],
-            'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
         ]);
-        
-        $this->createProfile($user, $data);
-        return $user;
-
-    }
-
-    protected function createProfile($user, $data)
-    {
-
-
-        if ($data['gender'] === 'Female') {
-            $avatar = 'public/images/defaults/avatar/female.png';
-        } else $avatar = 'public/images/defaults/avatar/male.png';
-
-
-        Profile::create([
-            'user_id' => $user->id,
-            'name' => $data['name'], 
-            'username' => $data['username'], 
-            'email' => $data['email'], 
-            'gender' => $data['gender'],
-            'avatar' => $avatar
-        ]);
-
     }
 }
