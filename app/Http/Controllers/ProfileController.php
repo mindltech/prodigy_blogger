@@ -19,7 +19,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view ('profile');
+        return view ('profile', ['user' => auth()->user()]);
     }
 
     /**
@@ -62,7 +62,6 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        // dd();
         return view ('edit-profile', ['user' => auth()->user()]);
     }
 
@@ -91,7 +90,7 @@ class ProfileController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avatar_url = $request->file('avatar')->store('public/images/avatars');
-        } else $avatar_url = Storage::url(auth()->user()->profile->avatar);
+        } else $avatar_url = auth()->user()->profile->avatar;
 
         $updated = $profile->update([
             // update the values here
@@ -105,7 +104,15 @@ class ProfileController extends Controller
             'avatar' =>$avatar_url
         ]);
 
-        if ($updated) {
+        $user = $profile->user()->update([
+            'name' =>$data['name'],
+            'username' =>$data['username'],
+            'email' => $data['email'],
+            'gender' => $data['gender']
+        ]);
+
+
+        if ($user) {
             return redirect('/profile')->with(['success' => 'Profile updated!']);
         }
 

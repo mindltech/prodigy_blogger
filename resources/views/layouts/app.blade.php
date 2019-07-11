@@ -63,6 +63,11 @@
                                         {{ __('Profile') }}
                                     </a>
 
+                                    <!-- Post -->
+                                     <a class="dropdown-item" href="{{ url('/profile') }}">
+                                        {{ __('') }}
+                                    </a>
+
                                     <!-- Logout -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
