@@ -11,24 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index');
+Route::get('/create/post', 'PostController@create');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/profile', function () {
-//     return view('welcome');
-// });
-
-Auth::routes();
-
-Route::get('/profile', 'ProfileController@index')->name('profile');
-
-Auth::routes();
-
-Route::get('/edit-profile', 'ProfileController@edit')->name('edit-profile');
-
-Route::post('/profile/{profile}/update', 'ProfileController@update');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+// Route::get('/dimola', 'PostController@index');
+// Route::get('/create_post', 'PostController@create');
+Route::post('/store/post', 'PostController@store');
+Route::get('/post/{post}/show', 'PostController@show');
+Route::get('/post/{post}/edit', 'PostController@edit');
+Route::patch('/', 'PostController@update');
+Route::delete('/', 'PostController@destroy');
