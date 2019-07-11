@@ -5,16 +5,16 @@
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Title</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                <input type="text" class="form-control" id="exampleInputEmail1" value='{{ $post->title }}' aria-describedby="emailHelp" placeholder="">
             </div>
-            
+
             <div class="form-group">
     <label for="exampleFormControlTextarea1">Body</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Tell your story" rows="10"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" value="{{ str_limit($post->body, $limit = 150, $end = '...') }}" placeholder="Tell your story" rows="10">{{ str_limit($post->body, $limit = 150, $end = '...') }}</textarea>
   </div>
 
   <div class="form-group">
-    <label for="exampleFormControlFile1">Add an Image</label>
+    <label for="exampleFormControlFile1">Change Image</label>
     <input type="file" class="form-control-file" id="exampleFormControlFile1">
   </div>
             <button type="submit" class="btn btn-primary">Update</button>

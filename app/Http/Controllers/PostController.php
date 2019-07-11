@@ -50,7 +50,7 @@ class PostController extends Controller
         } else {
             $image_url = null;
         }
-        
+
         // ssave to db
         Post::create([
             'title' => $data['title'],
@@ -72,7 +72,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
 
-        return view('show_post', ['posts'=>$post]);
+        return view('show_post', ['post'=>$post]);
     }
 
     /**
@@ -81,12 +81,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $edit_posts = Post::findOrFail($id);
-        //return $posts;
-        exit();
-        return view('edit_post', ['edit_post' => $edit_post]);
+
+        return view('edit_post', ['post'=>$post]);
     }
 
     /**

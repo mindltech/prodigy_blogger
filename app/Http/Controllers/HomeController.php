@@ -11,7 +11,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-ft-user-functionality
+
     public function __construct()
     {
         // $this->middleware('auth');

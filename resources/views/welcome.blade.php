@@ -19,12 +19,18 @@
                     <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
-                    
+
                     </div>
                     <ul class='nav nav-pills card-body'>
                         <li role='presentation'>
                             <a href="{{url('post/'.$post->id.'/show')}}">
                                 <span>VIEW</span>
+                            </a>
+                            <a href="{{url('post/'.$post->id.'/edit')}}">
+                                <span>EDIT</span>
+                            </a>
+                            <a href="{{url('post/'.$post->id.'/delete')}}">
+                                <span>DELETE</span>
                             </a>
                         </li>
                         <!-- <li role='presentation'>
