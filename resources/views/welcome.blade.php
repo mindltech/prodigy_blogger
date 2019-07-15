@@ -15,7 +15,7 @@
             @foreach($posts as $post)
             <div class="col-lg-4">
                 <div class="card m-1">
-                    <img class="card-img-top" src="{{ Storage::url($post->image) }}" alt="Card image cap">
+                    <img class="card-img-top shadow p-3 mb-5 bg-white rounded" src="{{ Storage::url($post->image) }}" alt="Card image cap">
                     <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
@@ -33,16 +33,6 @@
                                 <span>DELETE</span>
                             </a>
                         </li>
-                        <!-- <li role='presentation'>
-                            <a href="#">
-                                <span> EDIT</span>
-                            </a>
-                        </li>
-                        <li role='presentation'>
-                            <a href="#">
-                                <span> DELETE</span>
-                            </a>
-                        </li> -->
                     </ul>
                     <div class="card-footer">
                     <small class="text-muted">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</small>

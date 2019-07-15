@@ -23,4 +23,4 @@ Route::post('/store/post', 'PostController@store');
 Route::get('/post/{post}/show', 'PostController@show');
 Route::get('/post/{post}/edit', 'PostController@edit');
 Route::patch('/', 'PostController@update');
-Route::delete('/', 'PostController@destroy');
+Route::get('post/{id}/delete', 'PostController@destroy');
