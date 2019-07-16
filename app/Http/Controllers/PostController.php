@@ -63,7 +63,7 @@ class PostController extends Controller
             'image' => $image_url
         ]);
 
-        return redirect('/')->with(['success', 'Post published successfully!']);
+        return redirect('/')->with(['success' => 'Article was published!']);
 
         // dd($request);
     }
@@ -117,8 +117,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+         $delete = Post::where('id', $id)->first();
+         $delete->delete();
+         return redirect('/')->with('response', 'post deleted');
     }
 }
