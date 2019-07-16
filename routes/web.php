@@ -22,5 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::post('/store/post', 'PostController@store');
 Route::get('/post/{post}/show', 'PostController@show');
 Route::get('/post/{post}/edit', 'PostController@edit');
-Route::patch('/', 'PostController@update');
+Route::patch('/post/{post}', 'PostController@update');
+
 Route::get('post/{id}/delete', 'PostController@destroy');

@@ -46,7 +46,7 @@ class PostController extends Controller
 
         if($request->hasFile('image')) {
             // $image_url = $data['image']->store('images/posts');
-            $image_url = $request->file('image')->store('public/images/posts');
+            $image_url = $request->file('image')->store('public/images/post');
         } else {
             $image_url = null;
         }
@@ -96,7 +96,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->all());
+        return redirect('/');
     }
 
     /**
