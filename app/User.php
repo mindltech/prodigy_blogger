@@ -41,4 +41,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne('App\Profile');
     }
+
+    public function post()
+    {
+        return $this->hasMany('App\Post');
+    }
 }

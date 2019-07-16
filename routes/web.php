@@ -24,3 +24,8 @@ Route::get('/post/{post}/show', 'PostController@show');
 Route::get('/post/{post}/edit', 'PostController@edit');
 Route::patch('/', 'PostController@update');
 Route::delete('/', 'PostController@destroy');
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/edit-profile', 'ProfileController@edit')->name('edit-profile');
+Route::post('/profile/{profile}/update', 'ProfileController@update');
+// Route::get('/my_post', 'PostController@mypost');
+Route::get('/my_post', 'PostController@getpost')->name('my_post');

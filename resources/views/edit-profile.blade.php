@@ -17,12 +17,6 @@
                     <div class="media">
                         <div style="display: grid; ">
                             <img style="height: 100px; background-color: cyan; border-radius: 50px; " src="{{Storage::url(auth()->user()->profile->avatar)}}" class="align-self-start mr-3 rounded-circles" alt="profile-avatar">
-                            <!-- <form class="align-self-start mr-3">
-                                <div class="form-group">
-                                  <label for="FormControlFile">Upload Image</label>
-                                  <input type="file" class="form-control-file" id="FormControlFile">
-                                </div>
-                            </form> -->
                         </div>
                         <form enctype="multipart/form-data" class="media-body" method="POST" action="{{ url('/profile/'.$user->profile->id.'/update') }}">
                           {{ csrf_field() }}
@@ -78,31 +72,6 @@
                                 </div>
                             <button class="btn btn-primary" role="button" style=" margin-left: -15px;">Update</button>
                         </form>
-
-                        <!-- <div class="media-body">
-                            <p class="mr-3" style="font-weight: 700;">Name:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->name)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Username:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->username)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Email:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->email)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Phone:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->phone_number)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Gender:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->gender)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Bio:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->bio)}}</span>
-                            </p>
-                            <p class="mr-3" style="font-weight: 700;">Address:
-                                <span style="padding-left: 10px; text-transform: capitalize; font-weight: 300">{{(auth()->user()->profile->address)}}</span>
-                            </p>
-                            <a class="btn btn-primary" href="#" role="button">Update</a>
-                        </div> -->
                     </div>
                 </div>
             </div>

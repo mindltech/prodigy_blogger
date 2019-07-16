@@ -64,7 +64,7 @@
                                     </a>
 
                                     <!-- Post -->
-                                     <a class="dropdown-item" href="{{ url('/post') }}">
+                                     <a class="dropdown-item" href="{{url('/my_post')}}">
                                         {{ __('My Posts') }}
                                     </a>
 
