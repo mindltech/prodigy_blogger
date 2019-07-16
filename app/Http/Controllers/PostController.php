@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +28,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view('create_post');
+        return view('create_post', ['user' => auth()->user()]);
     }
 
     /**
@@ -52,7 +56,8 @@ class PostController extends Controller
         }
 
         // ssave to db
-        Post::create([
+        Post::user()->create([
+            // 'user_id' => auth()->user()->id,
             'title' => $data['title'],
             'body' => $data['body'],
             'image' => $image_url
@@ -73,6 +78,13 @@ class PostController extends Controller
     {
 
         return view('show_post', ['post'=>$post]);
+    }
+
+    public function getpost()
+    { 
+        $posts = Post::all();
+        
+        return view('my_post', ['posts' => $posts]);
     }
 
     /**
