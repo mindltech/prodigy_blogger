@@ -88,7 +88,7 @@ class PostController extends Controller
         
         return view('my_post', ['posts' => $user_posts]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
