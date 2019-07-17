@@ -24,13 +24,13 @@
                     <ul class='nav nav-pills card-body'>
                         <li role='presentation'>
                             <a href="{{url('post/'.$post->id.'/show')}}">
-                                <span>VIEW</span>
+                                <span><i class="fa fa-eye"></i>View </span>
                             </a>
                             <a href="{{url('post/'.$post->id.'/edit')}}">
-                                <span>EDIT</span>
+                                <span> <i class="fa fa-edit"></i>Edit </span>
                             </a>
                             <a href="{{url('post/'.$post->id.'/delete')}}">
-                                <span>DELETE</span>
+                                <span> <i class="fa fa-trash"></i>Delete</span>
                             </a>
                         </li>
                     </ul>

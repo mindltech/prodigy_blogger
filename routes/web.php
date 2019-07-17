@@ -30,3 +30,4 @@ Route::post('/profile/{profile}/update', 'ProfileController@update');
 Route::get('/my_post', 'PostController@getpost')->name('my_post');
 Route::get('post/{id}/delete', 'PostController@destroy');
 
+
