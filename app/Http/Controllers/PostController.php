@@ -44,7 +44,7 @@ class PostController extends Controller
         // validation
         $data = $request->validate([
             'title' => 'required|unique:posts|max:100',
-            'body' => 'required|min:5',
+            'body' => 'required|max:5000',
             'image' => 'nullable'
         ]);
 
@@ -56,8 +56,8 @@ class PostController extends Controller
         }
 
         // ssave to db
-        Post::user()->create([
-            // 'user_id' => auth()->user()->id,
+        Post::create([
+            'user_id' => auth()->user()->id,
             'title' => $data['title'],
             'body' => $data['body'],
             'image' => $image_url
@@ -82,9 +82,11 @@ class PostController extends Controller
 
     public function getpost()
     { 
-        $posts = Post::all();
+
+        $user_posts = auth()->user()->post;
+        // Post::all();
         
-        return view('my_post', ['posts' => $posts]);
+        return view('my_post', ['posts' => $user_posts]);
     }
 
     /**
@@ -95,8 +97,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
-        return view('edit_post', ['post'=>$post]);
+        if ($post->user->id === auth()->id()) {
+            $user_posts = $post;
+            return view('edit_post', ['post'=>$user_posts]);
+        } else return abort(403, 'this is not your post!');
+        
     }
 
     /**
@@ -118,10 +123,13 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $id)
     {
-         $delete = Post::where('id', $id)->first();
+        if($id->user->id === auth()->id()){
+            // $delete = auth()->user()->post('id', $id)->first();
          $delete->delete();
          return redirect('/')->with('response', 'post deleted');
+     }else return abort(403, 'you can\'t delete this post!');
+         
     }
 }
