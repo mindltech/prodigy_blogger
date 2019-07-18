@@ -29,4 +29,5 @@ Route::post('/profile/{profile}/update', 'ProfileController@update');
 // Route::get('/my_post', 'PostController@mypost');
 Route::get('/my_post', 'PostController@getpost')->name('my_post');
 Route::get('post/{id}/delete', 'PostController@destroy')->middleware('verified');
-
+Route::any('/search', 'HomeController@search');
+// Route::get('/error', 'HomeController@error');
