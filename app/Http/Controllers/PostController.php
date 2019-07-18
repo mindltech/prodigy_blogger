@@ -81,14 +81,14 @@ class PostController extends Controller
     }
 
     public function getpost()
-    { 
+    {
 
         $user_posts = auth()->user()->post;
         // Post::all();
-        
+
         return view('my_post', ['posts' => $user_posts]);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,7 +101,7 @@ class PostController extends Controller
             $user_posts = $post;
             return view('edit_post', ['post'=>$user_posts]);
         } else return abort(403, 'this is not your post!');
-        
+
     }
 
     /**
@@ -126,10 +126,10 @@ class PostController extends Controller
     public function destroy(Post $id)
     {
         if($id->user->id === auth()->id()){
-            // $delete = auth()->user()->post('id', $id)->first();
+            $delete = auth()->user()->post('id', $id)->first();
          $delete->delete();
          return redirect('/')->with('response', 'post deleted');
      }else return abort(403, 'you can\'t delete this post!');
-         
+
     }
 }
