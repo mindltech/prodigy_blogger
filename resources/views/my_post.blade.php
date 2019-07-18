@@ -19,7 +19,10 @@
                     <div class="row">
                     	@foreach($posts as $post)
                     	<div class="col-md-4">
+                        @if($post->image)
     					  <img class="card-img-top" src="{{ Storage::url($post->image) }}" alt="Card image cap">
+                        @endif
+
                     	  <div class="card-body">
                     	  	<h5 class="card-title">{{ $post->title }}</h5>
                     	  	<p class="card-text">{{ str_limit($post->body, $limit = 1500, $end = '...') }}</p>

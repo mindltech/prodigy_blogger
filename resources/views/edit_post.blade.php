@@ -15,10 +15,11 @@
     <label for="exampleFormControlTextarea1">Body</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" name="body"  value="{{ str_limit($post->body, $limit = 150, $end = '...') }}" placeholder="Tell your story" rows="10">{{ str_limit($post->body, $limit = 150, $end = '...') }}</textarea>
   </div>
-
+  <img src="{{ Storage::url($post->image) }}" style='max-width:20%' alt="">
   <div class="form-group">
     <label for="exampleFormControlFile1">Change Image</label>
-    <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
+    <input type="file" class="form-control-file" name="image" src="{{ Storage::url($post->image) }}" id="exampleFormControlFile1">
+
   </div>
             <button type="submit" class="btn btn-primary">Update</button>
             </form>

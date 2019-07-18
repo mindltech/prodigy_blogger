@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class PostController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
     /**
      * Display a listing of the resource.
@@ -83,14 +84,14 @@ class PostController extends Controller
     }
 
     public function getpost()
-    { 
+    {
 
         $user_posts = auth()->user()->post;
         // Post::all();
-        
+
         return view('my_post', ['posts' => $user_posts]);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +104,7 @@ class PostController extends Controller
             $user_posts = $post;
             return view('edit_post', ['post'=>$user_posts]);
         } else return abort(403, 'this is not your post!');
-        
+
     }
 
     /**
@@ -115,7 +116,27 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update($request->all());
+        // Post::create([
+        //     'image' => $image_url
+        // ]);
+        // $post->update($request->all());
+        // dd($request->all());
+
+        if($request->hasFile('image')) {
+            // $image_url = $data['image']->store('images/posts');
+            $image_url = $request->file('image')->store('public/images/post');
+        } else {
+            $image_url = $post->image;
+        }
+
+        // ssave to db
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'image' => $image_url
+        ]);
+
+        // $post->update($request->image_url());
         return redirect('/');
     }
 
@@ -125,13 +146,15 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $id)
+
+    public function destroy(Post $post)
     {
-        if($id->user->id === auth()->id()){
-            $delete = auth()->user()->post('id', $id)->first();
-         $delete->delete();
+
+        Storage::delete($post->image);
+        $post->delete();
+        // dd($delete = Post::where('id', $id)->first());
+        //  $delete = Post::where('id', $id)->first();
+        //  $delete->delete();
          return redirect('/')->with('response', 'post deleted');
-     }else return abort(403, 'you can\'t delete this post!');
-         
     }
 }
