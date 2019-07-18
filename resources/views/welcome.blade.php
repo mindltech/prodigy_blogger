@@ -57,6 +57,12 @@
                         </li>
                     </ul>
                     <div class="card-footer">
+                        <span class="pull-right">
+                            <a href="{{url('users/'.$post->user->id.'/@'.$post->user->username.'/')}}">
+                                {{ $post->user->name }}
+                                <!-- the post model is associated with user and a user has a name -->
+                            </a>
+                        </span>
                     <small class="text-muted">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</small>
                     </div>
                 </div>

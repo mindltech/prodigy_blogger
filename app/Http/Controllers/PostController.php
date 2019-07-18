@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -59,6 +60,7 @@ class PostController extends Controller
         // ssave to db
         Post::create([
             'user_id' => auth()->user()->id,
+            'username' => auth()->user()->username,
             'title' => $data['title'],
             'body' => $data['body'],
             'image' => $image_url
@@ -147,6 +149,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+
         Storage::delete($post->image);
         $post->delete();
         // dd($delete = Post::where('id', $id)->first());
