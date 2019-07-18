@@ -60,7 +60,6 @@ class PostController extends Controller
         // ssave to db
         Post::create([
             'user_id' => auth()->user()->id,
-            'username' => auth()->user()->username,
             'title' => $data['title'],
             'body' => $data['body'],
             'image' => $image_url
