@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -58,6 +59,7 @@ class PostController extends Controller
         // ssave to db
         Post::create([
             'user_id' => auth()->user()->id,
+            'username' => auth()->user()->username,
             'title' => $data['title'],
             'body' => $data['body'],
             'image' => $image_url
@@ -126,7 +128,7 @@ class PostController extends Controller
     public function destroy(Post $id)
     {
         if($id->user->id === auth()->id()){
-            // $delete = auth()->user()->post('id', $id)->first();
+            $delete = auth()->user()->post('id', $id)->first();
          $delete->delete();
          return redirect('/')->with('response', 'post deleted');
      }else return abort(403, 'you can\'t delete this post!');

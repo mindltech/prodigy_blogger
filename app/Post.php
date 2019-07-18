@@ -9,11 +9,16 @@ class Post extends Model
     protected $table = "posts";
 
     protected $fillable = [
-      'user_id', 'title', 'body', 'image',
+      'user_id', 'username', 'title', 'body', 'image',
     ];
 
     public function user()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function profile()
+    {
+    	return $this->belongsTo('App\Profile');
     }
 }

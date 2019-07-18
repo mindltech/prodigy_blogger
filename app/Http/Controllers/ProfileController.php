@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,6 +53,12 @@ class ProfileController extends Controller
     public function show(Profile $profile)
     {
         
+    }
+
+    //
+    public function author(User $user){
+        // dd($user);
+        return view('author', ['author' => $user]);
     }
 
     /**
