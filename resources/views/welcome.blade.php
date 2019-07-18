@@ -21,10 +21,9 @@
             </span>
             </div> -->
         </form>
-            <h1 class="display-4">Welcome to WeBlog</h1>
+            <h1 class="display-4">Welcome to Prodigy Blogger</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <a class="btn btn-primary btn-lg" href="http://127.0.0.1:8000/create/post" role="button">Add post</a>
         </div>
 
@@ -32,8 +31,11 @@
             <div class="row">
             @foreach($posts as $post)
             <div class="col-lg-4">
-                <div class="card m-1">
-                    <img class="card-img-top shadow p-3 mb-5 bg-white rounded" src="{{ Storage::url($post->image) }}" alt="Card image cap">
+                <div class="card m-1 shadow">
+                    @if($post->image)
+                        <img class="card-img-top p-3 mb-5 bg-white rounded" src="{{ Storage::url($post->image) }}" alt="">
+                    @endif
+
                     <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
@@ -42,14 +44,16 @@
                     <ul class='nav nav-pills card-body'>
                         <li role='presentation'>
                             <a href="{{url('post/'.$post->id.'/show')}}">
-                                <span><i class="fa fa-eye"></i>View </span>
+                                <span><i class="fa fa-eye"></i> View </span>
                             </a>
+                            @if(auth()->check() && auth()->id() === $post->user->id)
                             <a href="{{url('post/'.$post->id.'/edit')}}">
-                                <span> <i class="fa fa-edit"></i>Edit </span>
+                                <span> <i class="fa fa-edit"></i> Edit </span>
                             </a>
                             <a href="{{url('post/'.$post->id.'/delete')}}">
-                                <span> <i class="fa fa-trash"></i>Delete</span>
+                                <span> <i class="fa fa-trash"></i> Delete</span>
                             </a>
+                            @endif
                         </li>
                     </ul>
                     <div class="card-footer">
