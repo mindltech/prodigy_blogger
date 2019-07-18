@@ -8,7 +8,7 @@
                 <label for="">Title</label>
                 <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
             </div>
-            
+
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Body</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="body" placeholder="Tell your story" rows="10"></textarea>
