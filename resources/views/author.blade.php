@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
+
 @section('content')
+
 <style>
 	.fg-clr-white{
 		color: #ffffff;
@@ -104,12 +106,13 @@
 					<img class="rounded-circle mg-top-15px" src="{{ Storage::url($author->profile->avatar) }}" alt="Card image cap" style="height: 40px; width: 40px;">
 					<div class="">
 						<h5 class="font-bd mgn-btm-sl mg-top-1 mg-left-15px">{{ $author->name }}</h5>
-						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</p>
+						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}} | <i>Reading time</i>: <span id="read_time"></span> </p>
 					</div>
 				</div>
 			</div>
 			<h1 class="font-sm padding-auto-3">{{ $post->title }}</h1>
 			<p class="padding-auto-3">{{ str_limit($post->body, $limit = 250, $end = '...') }}</p>
+			<p style="opacity: 0; height: 0px;" id="post_body">{{ $post->body }}</p>
 			<ul class='nav nav-pills card-body'>
                 <li role='presentation'>
                     <a href="{{url('post/'.$post->id.'/show')}}">
@@ -134,6 +137,38 @@
     </div>
     @endif
 </div>
+<script>
+	let textBody = document.getElementById('post_body').innerHTML,
+		readingTime = document.getElementById('read_time');
+		
+		// console.log(textBody.split(' ').join(' '));
+		// console.log(finalText.length, joinedText.length)
 
+		const formatSecToMin = (seconds) =>{
+			let mins = (seconds /60).toFixed(0),
+				secs = (seconds % 60).toFixed(1);
+
+				let time = `${mins} min ${secs} secs`
+
+
+			return time;
+
+
+		}
+
+	const getReadTime = (text) =>{
+			let wordCount = text.split(" "),
+			wordLength = wordCount.length;
+			
+			let readTime = (wordLength * 60) / 200;
+
+			return formatSecToMin(readTime);
+
+	}
+	// console.log(getReadTime(textBody));
+	read_time.innerHTML = getReadTime(textBody);
+
+
+</script>
 
 @endsection
