@@ -52,7 +52,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        
+       
     }
 
     //
@@ -69,6 +69,7 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
+        
         return view ('edit-profile', ['user' => auth()->user()]);
     }
 
@@ -92,7 +93,7 @@ class ProfileController extends Controller
             'address' => 'required|string|max:255'
         ]);
 
-        // dd(auth()->user()->profile->avatar);
+        // dd(auth()->user()->profile);
    
 
         if ($request->hasFile('avatar')) {

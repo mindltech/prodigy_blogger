@@ -87,7 +87,6 @@ class PostController extends Controller
 
         $user_posts = auth()->user()->post;
         // Post::all();
-
         return view('my_post', ['posts' => $user_posts]);
     }
 
