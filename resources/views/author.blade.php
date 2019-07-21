@@ -106,7 +106,7 @@
 					<img class="rounded-circle mg-top-15px" src="{{ Storage::url($author->profile->avatar) }}" alt="Card image cap" style="height: 40px; width: 40px;">
 					<div class="">
 						<h5 class="font-bd mgn-btm-sl mg-top-1 mg-left-15px">{{ $author->name }}</h5>
-						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}} | <i>Reading time</i>: <span id="read_time"></span> </p>
+						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}  | <i>Reading time</i>: <span id="read_time"></span></p>
 					</div>
 				</div>
 			</div>
@@ -138,25 +138,16 @@
     @endif
 </div>
 <script>
-	let textBody = document.getElementById('post_body').innerHTML,
-		readingTime = document.getElementById('read_time');
-		
-		// console.log(textBody.split(' ').join(' '));
-		// console.log(finalText.length, joinedText.length)
 
-		const formatSecToMin = (seconds) =>{
+const formatSecToMin = (seconds) =>{
+
 			let mins = (seconds /60).toFixed(0),
-				secs = (seconds % 60).toFixed(1);
+				secs = (seconds % 60).toFixed(0);
 
-				let time = `${mins} min ${secs} secs`
+			return mins <2 ? `${mins} min ${secs} secs` : `${mins} mins ${secs} secs`;
+	}
 
-
-			return time;
-
-
-		}
-
-	const getReadTime = (text) =>{
+const getReadTime = (text) =>{
 			let wordCount = text.split(" "),
 			wordLength = wordCount.length;
 			
@@ -165,8 +156,22 @@
 			return formatSecToMin(readTime);
 
 	}
-	// console.log(getReadTime(textBody));
-	read_time.innerHTML = getReadTime(textBody);
+
+let postBody = Array.from(document.querySelectorAll('#post_body'));
+
+for(let i = 0; i<=postBody.length; i++){
+
+	let	readingTime= Array.from(document.querySelectorAll('#read_time'));
+
+	for(let j = 0; j<=readingTime.length; j++){
+			readingTime[i].textContent = getReadTime(postBody[i].textContent);
+		}
+// console.log(getReadTime(postBody[i].innerHTML);
+}
+
+
+
+		
 
 
 </script>
