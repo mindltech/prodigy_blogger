@@ -55,6 +55,9 @@
 	.font-sm{
 		font-weight: 400;
 	}
+	.padding-4{
+		padding: 0 0 0 1.2em;
+	}
 	.padding-auto-12{
 		padding: 0 12em;
 	}
@@ -100,7 +103,7 @@
 	@if(count($author->post)>0)
 	<div>
 		@foreach($author->post as $post)
-		<div class="card">
+		<div class="card mg-bottom">
 			<div class="card-header bg-clr-white" style="">
 				<div class="flex-item-start">
 					<img class="rounded-circle mg-top-15px" src="{{ Storage::url($author->profile->avatar) }}" alt="Card image cap" style="height: 40px; width: 40px;">
@@ -110,7 +113,7 @@
 					</div>
 				</div>
 			</div>
-			<h1 class="font-sm padding-auto-3">{{ $post->title }}</h1>
+			<h1 class="font-sm padding-4 mg-top-15px">{{ $post->title }}</h1>
 			<p class="padding-auto-3">{{ str_limit($post->body, $limit = 250, $end = '...') }}</p>
 			<p style="opacity: 0; height: 0px;" id="post_body">{{ $post->body }}</p>
 			<ul class='nav nav-pills card-body'>
@@ -141,10 +144,10 @@
 
 const formatSecToMin = (seconds) =>{
 
-			let mins = (seconds /60).toFixed(0),
-				secs = (seconds % 60).toFixed(0);
+			let mins = (seconds /60).toFixed(0);
+				// secs = (seconds % 60).toFixed(0);
 
-			return mins <2 ? `${mins} min ${secs} secs` : `${mins} mins ${secs} secs`;
+			return mins <2 ? `${mins} min` : `${mins} mins`;
 	}
 
 const getReadTime = (text) =>{
@@ -161,10 +164,13 @@ let postBody = Array.from(document.querySelectorAll('#post_body'));
 
 for(let i = 0; i<=postBody.length; i++){
 
+	let postLength = postBody[i].innerText;
+	console.log(postLength);
 	let	readingTime= Array.from(document.querySelectorAll('#read_time'));
 
 	for(let j = 0; j<=readingTime.length; j++){
-			readingTime[i].textContent = getReadTime(postBody[i].textContent);
+		
+			readingTime[i].textContent = getReadTime(postLength);
 		}
 // console.log(getReadTime(postBody[i].innerHTML);
 }
