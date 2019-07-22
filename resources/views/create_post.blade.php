@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .cl-blue{
+        color: blue;
+    }
+</style>
     <div class='container'>
         <form action="{{url('/store/post')}}" enctype='multipart/form-data' method = "POST">
         {{ csrf_field() }}
@@ -12,6 +17,12 @@
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Body</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="body" placeholder="Tell your story" rows="10"></textarea>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label for="city_tag">Please write a tag</label>
+                    <input type="text" value="Istanbul, Adana, Adiyaman, Afyon, Agri, Aksaray, Ankara" data-role="tagsinput" class="form-control cl-blue" style="color: blue;" />
+                </div>
             </div>
 
             <div class="form-group">
