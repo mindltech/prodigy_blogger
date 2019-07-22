@@ -21,4 +21,9 @@ class Post extends Model
     {
     	return $this->belongsTo('App\Profile');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tags');
+    }
 }
