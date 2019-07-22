@@ -21,4 +21,9 @@ class Post extends Model
     {
     	return $this->belongsTo('App\Profile');
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Like::class, 'likes');
+    }
 }
