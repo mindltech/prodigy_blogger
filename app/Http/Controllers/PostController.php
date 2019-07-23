@@ -65,7 +65,7 @@ class PostController extends Controller
             'image' => $image_url
         ]);
 
-        return redirect('/')->with(['success' => 'Article was published!']);
+        return redirect('/')->with(['good' => 'Article was published!']);
 
         // dd($request);
     }
@@ -139,7 +139,7 @@ class PostController extends Controller
         ]);
 
         // $post->update($request->image_url());
-        return redirect('/');
+        return redirect('/')->with(['update' => 'Post updated!']);
     }
 
     /**
@@ -157,6 +157,8 @@ class PostController extends Controller
         // dd($delete = Post::where('id', $id)->first());
         //  $delete = Post::where('id', $id)->first();
         //  $delete->delete();
-         return redirect('/')->with('response', 'post deleted');
+        // Session::put('success', 'Your Record Deleted Successfully.');
+        //  return redirect('/');
+        return redirect()->back()->withSuccess('deleted');
     }
 }
