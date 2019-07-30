@@ -6,6 +6,7 @@
     
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{mix('css/app.css')}}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,11 +14,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+
     
      <!-- Type aheaed -->
     <script src="{{ asset('/js/typeahead/dist/typeahead.bundle.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/typeahead/dist/bloodhound.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -98,10 +102,16 @@
         <main class="py-4">
             @yield('content')
 
+
         </main>
     </div>
 
+
     <!-- Bootstrap tags input -->
     <script src="{{asset('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+
+    <script src="{{mix('js/app.js')}}" ></script>
+
 </body>
+
 </html>

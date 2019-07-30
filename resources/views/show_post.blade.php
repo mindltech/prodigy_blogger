@@ -10,6 +10,17 @@
         @endif
         <p class="card-text">{{ str_limit($post->body, $limit = 3500, $end = '...') }}</p>
     </div>
+    <main class="py-4">
+    <!-- @if(auth()->check())
+            @yield('content')
+
+            <like></like> -->
+     <div id="like">
+        <Like :post="{{ $post }}"></Like>
+     </div>
+     <!-- <script src="{{mix('js/app.js')}}"></script> -->
+    <!-- @endif -->
+        </main>
     <div class="card-footer">
         <small class="text-muted">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</small>
     </div>

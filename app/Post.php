@@ -22,8 +22,17 @@ class Post extends Model
     	return $this->belongsTo('App\Profile');
     }
 
+
     public function tags()
     {
+
         return $this->belongsToMany(Tag::class, 'posts_tags', 'post_id', 'tag_id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Like::class, 'likes');
+
+
     }
 }

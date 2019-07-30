@@ -98,6 +98,10 @@ class PostController extends Controller
 
         return view('show_post', ['post'=>$post]);
     }
+    public function like(Post $post)
+    {
+        $post->save();
+    }
 
     public function getpost()
     {
