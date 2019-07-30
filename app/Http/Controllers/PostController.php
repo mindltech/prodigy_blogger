@@ -64,6 +64,7 @@ class PostController extends Controller
             $image_url = null;
         }
 
+
         // save to db
         $post=Post::create([
                 'user_id' => auth()->user()->id,
@@ -85,6 +86,8 @@ class PostController extends Controller
 
     
         return redirect('/')->with(['success' => 'Article was published!']);
+
+       
     }
 
     /**
@@ -157,7 +160,7 @@ class PostController extends Controller
         ]);
 
         // $post->update($request->image_url());
-        return redirect('/');
+        return redirect('/')->with(['update' => 'Post updated!']);
     }
 
     /**
@@ -175,6 +178,8 @@ class PostController extends Controller
         // dd($delete = Post::where('id', $id)->first());
         //  $delete = Post::where('id', $id)->first();
         //  $delete->delete();
-         return redirect('/')->with('response', 'post deleted');
+        // Session::put('success', 'Your Record Deleted Successfully.');
+        //  return redirect('/');
+        return redirect()->back()->withSuccess('deleted');
     }
 }

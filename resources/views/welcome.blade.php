@@ -24,8 +24,26 @@
             <h1 class="display-4">Welcome to Prodigy Blogger</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="http://127.0.0.1:8000/create/post" role="button">Add post</a>
+            <a class="btn btn-primary btn-lg" href="{{ url('create/post') }}" role="button">Add post</a>
         </div>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> Your post has been deleted successfully.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
+        @if(session('good'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> Your post has been published successfully.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
+        @if(session('update'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> Your post has been updated successfully.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
 
         @if(count($posts) > 0)
             <div class="row">
@@ -53,12 +71,39 @@
                             <a href="{{url('post/'.$post->id.'/edit')}}">
                                 <span> <i class="fa fa-edit"></i> Edit </span>
                             </a>
-                            <a href="{{url('post/'.$post->id.'/delete')}}">
+                            <!-- <a href="{{url('post/'.$post->id.'/delete')}}">
+                                <span> <i class="fa fa-trash"></i> Delete</span>
+                            </a> -->
+                            <a href="#" data-toggle="modal" data-target="#exampleModal-{{ $post->id }}">
                                 <span> <i class="fa fa-trash"></i> Delete</span>
                             </a>
+                                <!-- Modal -->
+
+                            <div class="modal fade" id="exampleModal-{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                                    <!-- <span aria-hidden="true">&times;</span>
+                                    </button> -->
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this post - {{ $post->title }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <a href="{{url('post/'.$post->id.'/delete')}}"><button type="button" class="btn btn-danger">Yes</button></a>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                             @endif
                         </li>
                     </ul>
+
+
                     <div class="card-footer">
                         <span class="pull-right">
                             <a href="{{url('users/'.$post->user->id.'/@'.$post->user->username.'/')}}">

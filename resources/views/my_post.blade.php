@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    <a class="btn btn-primary btn-lg" style="float:right" href="{{ url('create/post') }}" role="button">Add post</a>
 	  <h1>My posts</h1>
 	  <div class="row justify-content-center">
 	  	<div class="col-md-12">
