@@ -40,6 +40,9 @@
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
 
+                    @foreach($post->tags as $tag)
+                    <span class="badge badge-dark">{{ $tag->name }}</span>
+                    @endforeach
                     </div>
                     <ul class='nav nav-pills card-body'>
                         <li role='presentation'>
