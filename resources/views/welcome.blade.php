@@ -12,17 +12,8 @@
                     <button class="btn btn-outline-secondary" type="submit">Search</button>
                 </div>
             </div>
-            <!-- <div class="input-group">
-            <input type="text" class="form-control" name="search"
-            placeholder="Search users"> <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
-            </div> -->
         </form>
             <h1 class="display-4">Welcome to Prodigy Blogger</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
             <a class="btn btn-primary btn-lg" href="{{ url('create/post') }}" role="button">Add post</a>
         </div>
@@ -61,19 +52,20 @@
                     </div>
                     <ul class='nav nav-pills card-body'>
                         <li role='presentation'>
-                            <a href="{{url('post/'.$post->id.'/show')}}">
-                                <span><i class="fa fa-eye"></i> View </span>
-                            </a>
+                              <div class="btn-group">
+                                <button class="navbar-toggler toggler-example purple darken-3" type="button" data-toggle="dropdown"
+                                    data-target="#navbarSupportedContent41" aria-controls="navbarSupportedContent41" aria-expanded="false"
+                                    aria-label="Toggle navigation"><span class="white-text"><i class="fa fa-ellipsis-v"></i></span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                                  <a class="dropdown-item" href="{{url('post/'.$post->id.'/show')}}" style="color: black">View</a>
+                                  @if(auth()->check() && auth()->id() === $post->user->id)
+                                  <a class="dropdown-item" href="{{url('post/'.$post->id.'/edit')}}" style="color: black">Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal-{{ $post->id }}" style="color: black">Delete</a>
+                                  @endif
+                                </div>
+                              </div>
                             @if(auth()->check() && auth()->id() === $post->user->id)
-                            <a href="{{url('post/'.$post->id.'/edit')}}">
-                                <span> <i class="fa fa-edit"></i> Edit </span>
-                            </a>
-                            <!-- <a href="{{url('post/'.$post->id.'/delete')}}">
-                                <span> <i class="fa fa-trash"></i> Delete</span>
-                            </a> -->
-                            <a href="#" data-toggle="modal" data-target="#exampleModal-{{ $post->id }}">
-                                <span> <i class="fa fa-trash"></i> Delete</span>
-                            </a>
                                 <!-- Modal -->
 
                             <div class="modal fade" id="exampleModal-{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,9 +73,6 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-                                    <!-- <span aria-hidden="true">&times;</span>
-                                    </button> -->
                                 </div>
                                 <div class="modal-body">
                                     Are you sure you want to delete this post - {{ $post->title }}?
