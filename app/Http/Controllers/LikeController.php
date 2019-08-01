@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Like;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -20,8 +21,30 @@ class LikeController extends Controller
     public function like(Post $post)
     {
         // like button
-        $post->likes()->sync(auth()->user());
-        return response([200, 'you liked post with ID of: ' . $post->id]);
+    
+        if ((bool) Like::where('user_id', auth()->id())->where('post_id', $post->id)->first()) {
+            $post->likes()->detach(auth()->user());
+
+            return response()->json(['likes' => count($post->likes)], 201);
+        }
+        $post->likes()->attach(auth()->user());
+
+        return response()->json(['likes' => count($post->likes)], 201);  
+
 
     }
 }
+// public function like(Post $post)
+//     {
+//         // like button
+//         if ((bool) Like::where('user_id', auth()->id())->where('post_id', $post->id)->first()) {
+//             $post->likes()->detach(auth()->user());
+
+//             return response()->json(['likes' => count($post->likes), 'status' => false], 201);
+//         }
+
+//         $post->likes()->attach(auth()->user());
+
+//         return response()->json(['likes' => count($post->likes), 'status' => true], 201);
+
+//     }

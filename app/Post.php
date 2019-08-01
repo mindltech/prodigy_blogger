@@ -8,6 +8,8 @@ class Post extends Model
 {
     protected $table = "posts";
 
+    public $with = ['user','likes'];
+
     protected $fillable = [
       'user_id', 'title', 'body', 'image',
     ];
@@ -29,9 +31,14 @@ class Post extends Model
       
     }
 
+    // public function likes()
+    // {
+    //     return $this->belongsToMany(Like::class, 'likes');
+
+    // }
     public function likes()
     {
-        return $this->belongsToMany(Like::class, 'likes');
+        return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')->withTimeStamps();
 
 
     }
