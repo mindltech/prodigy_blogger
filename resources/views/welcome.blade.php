@@ -50,7 +50,7 @@
                     <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
 
                     @foreach($post->tags as $tag)
-                    <span class="badge badge-dark">{{ $tag->name }}</span>
+                    <a href="{{ url('tag/'.$tag->id.'/tag_post') }}" class="badge badge-dark">{{ $tag->name }}</a>
                     @endforeach
                     </div>
                     <ul class='nav nav-pills card-body'>

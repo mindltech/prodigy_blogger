@@ -3,72 +3,6 @@
 
 @section('content')
 
-<style>
-	.fg-clr-white{
-		color: #ffffff;
-	}
-	.bg-clr-white{
-		background-color: #ffffff;
-	}
-
-	.border-none{
-		border: none;
-	}
-	.mg-0-auto{
-		margin: 0 auto;
-	}
-	.mg-0-175{
-		margin: 0 175px;
-	}
-	.mg-top-15px{
-		margin-top: 15px;
-	}
-	.mg-left-15px{
-		margin-left: 15px;
-	}
-	.mg-top-1{
-		margin-top: 1.5em; 
-	}
-	.mg-bottom-6{
-		margin-bottom: 6em;
-	}
-	.mgn-btm-sl{
-		margin-bottom: .5rem;
-	}
-	.mg-bottom{
-		margin-bottom: 15px;
-	}
-	.grid-item-ct{
-		display: grid;	
-	}
-	.flex-around{
-		display: flex;
-		justify-content: space-between;
-	}
-	.flex-item-start{
-		display: flex;
-		justify-content: flex-start;
-	}
-	.font-bd{
-		font-weight: 600;
-	}
-	.font-sm{
-		font-weight: 400;
-	}
-	.padding-4{
-		padding: 0 0 0 1.2em;
-	}
-	.padding-auto-12{
-		padding: 0 12em;
-	}
-	.padding-auto-3{
-		padding: 0 3em;
-	}
-	.pd-top{
-		padding-top: 25px;
-	}
-</style>
-
 <div class="container padding-auto-12 mg-bottom">
 	 @if (session('status'))
          <div class="alert alert-success" role="alert">
@@ -140,46 +74,5 @@
     </div>
     @endif
 </div>
-<script>
-
-const formatSecToMin = (seconds) =>{
-
-			let mins = (seconds /60).toFixed(0);
-				// secs = (seconds % 60).toFixed(0);
-
-			return mins <2 ? `${mins} min` : `${mins} mins`;
-	}
-
-const getReadTime = (text) =>{
-			let wordCount = text.split(" "),
-			wordLength = wordCount.length;
-			
-			let readTime = (wordLength * 60) / 200;
-
-			return formatSecToMin(readTime);
-
-	}
-
-let postBody = Array.from(document.querySelectorAll('#post_body'));
-
-for(let i = 0; i<=postBody.length; i++){
-
-	let postLength = postBody[i].innerText;
-	console.log(postLength);
-	let	readingTime= Array.from(document.querySelectorAll('#read_time'));
-
-	for(let j = 0; j<=readingTime.length; j++){
-		
-			readingTime[i].textContent = getReadTime(postLength);
-		}
-// console.log(getReadTime(postBody[i].innerHTML);
-}
-
-
-
-		
-
-
-</script>
 
 @endsection
