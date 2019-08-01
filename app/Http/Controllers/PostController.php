@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\User;
+<<<<<<< HEAD
 use App\like;
+=======
+use App\Tag;
+>>>>>>> 52cbc3e2a3f5290fa4f13af784c495d2a86a1148
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,7 +26,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        // dd($posts);
+
         return view('welcome', ['posts' => $posts]);
     }
 
@@ -44,31 +48,50 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // validation
-        $data = $request->validate([
-            'title' => 'required|unique:posts|max:100',
-            'body' => 'required|max:5000',
-            'image' => 'nullable'
-        ]);
+         // validation
+        // dd($request);
+  
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:posts|max:100',
+                'body' => 'required|max:5000',
+                'tags' => 'required',
+                'image' => 'nullable'
+            ]
+            // array('tag' => 'required|max:255')
+        );
 
-        if($request->hasFile('image')) {
+         if($request->hasFile('image')) {
             // $image_url = $data['image']->store('images/posts');
             $image_url = $request->file('image')->store('public/images/post');
         } else {
             $image_url = null;
         }
 
-        // ssave to db
-        Post::create([
-            'user_id' => auth()->user()->id,
-            'title' => $data['title'],
-            'body' => $data['body'],
-            'image' => $image_url
-        ]);
 
-        return redirect('/')->with(['good' => 'Article was published!']);
+        // save to db
+        $post=Post::create([
+                'user_id' => auth()->user()->id,
+                'title' => $data['title'],
+                'body' => $data['body'],
+                'image' => $image_url
+            ]);
 
-        // dd($request);
+            // get tags
+            $tagList = explode(",", $request->get('tags'));
+
+            // loop through array of tags created
+            foreach($tagList as $tag){
+                $tagModel = Tag::firstOrCreate([
+                    'name' => strtolower($tag)
+                ]);
+                $tagModel->posts()->attach($post);
+            }
+
+    
+        return redirect('/')->with(['success' => 'Article was published!']);
+
+       
     }
 
     /**
@@ -152,6 +175,7 @@ class PostController extends Controller
         $post->update([
             'title' => $request->title,
             'body' => $request->body,
+            'tags' => $request->tags,
             'image' => $image_url
         ]);
 

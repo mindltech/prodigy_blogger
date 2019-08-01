@@ -27,7 +27,8 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tags');
+        return $this->belongsToMany(Tag::class, 'posts_tags', 'post_id', 'tag_id');
+      
     }
 
     // public function likes()
@@ -38,6 +39,7 @@ class Post extends Model
     public function likes()
     {
         return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')->withTimeStamps();
+
 
     }
 }
