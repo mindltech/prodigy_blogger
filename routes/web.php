@@ -18,9 +18,9 @@ Route::get('/create/post', 'PostController@create');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('try',function(){
-    return App\post::with('user','likes')->get();
-});
+// Route::get('try',function(){
+//     return App\post::with('user','likes')->get();
+// });
 Route::post('/store/post', 'PostController@store');
 Route::get('/post/{post}/show', 'PostController@show');
 Route::get('/post/{post}/edit', 'PostController@edit');
@@ -35,7 +35,8 @@ Route::get('users/{user}/@{username}', 'ProfileController@author');
 
 Route::get('post/{post}/delete', 'PostController@destroy');
 Route::any('/search', 'HomeController@search');
-Route::get('posts/{post}/like', 'LikeController@like');
+Route::get('/posts/{post}/like', 'LikeController@like');
+
 
 // Route::get('/error', 'HomeController@error');
 Route::get('drop', function() {

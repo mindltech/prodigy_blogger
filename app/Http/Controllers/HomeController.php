@@ -36,6 +36,7 @@ class HomeController extends Controller
 
         return view('welcome', ['posts' => $match]);
 
+
         // if (count($match) > 0) {
         //     return view('welcome', ['posts' => $match]);
         // } else return view('welcome', ['error' => 'no match found!']);

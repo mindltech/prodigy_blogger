@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\User;
+<<<<<<< HEAD
+use App\like;
+=======
 use App\Tag;
+>>>>>>> 52cbc3e2a3f5290fa4f13af784c495d2a86a1148
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -101,9 +105,25 @@ class PostController extends Controller
 
         return view('show_post', ['post'=>$post]);
     }
-    public function like(Post $post)
+    // public function like(Post $post)
+    // {
+    //     $post->save();
+    // }
+    // public function likes($post){
+    //     if (request()->expectsJson()) {
+    //         $post = Post::find($post);
+    //         $post->likes++;
+    //         $post->save();
+    //         return $post;
+    //     }
+    // }
+
+    Public function like(request $request)
     {
-        $post->save();
+        $like = new like;
+        $like->user_id = Auth::id();
+        $like->post_id = $request->id;
+        $like->save();
     }
 
     public function getpost()
