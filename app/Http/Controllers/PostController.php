@@ -86,8 +86,7 @@ class PostController extends Controller
                 $tagModel->posts()->attach($post);
             }
 
-    
-        return redirect('/')->with(['success' => 'Article was published!']);
+            return redirect('/')->with(['good' => 'Post created!']);
 
        
     }
