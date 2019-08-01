@@ -41,3 +41,5 @@ Route::get('posts/{post}/like', 'LikeController@like');
 Route::get('drop', function() {
     return Illuminate\Support\Facades\Schema::dropIfExists('likes');
 });
+
+Route::get('tag/{tag}/tag_post', 'TagController@tagpost');

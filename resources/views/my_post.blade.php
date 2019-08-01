@@ -26,7 +26,10 @@
 
                     	  <div class="card-body">
                     	  	<h5 class="card-title">{{ $post->title }}</h5>
-                    	  	<p class="card-text">{{ str_limit($post->body, $limit = 1500, $end = '...') }}</p>
+							  <p class="card-text">{{ str_limit($post->body, $limit = 350, $end = '...') }}</p>
+							@foreach($post->tags as $tag)
+                    		<a href="" class="badge badge-dark">{{ $tag->name }}</a>
+                   			@endforeach
                     	  </div>
                     	  <ul class='nav nav-pills card-body'>
                     	      <li role='presentation'>
