@@ -43,7 +43,7 @@
 					<img class="rounded-circle mg-top-15px" src="{{ Storage::url($author->profile->avatar) }}" alt="Card image cap" style="height: 40px; width: 40px;">
 					<div class="">
 						<h5 class="font-bd mgn-btm-sl mg-top-1 mg-left-15px">{{ $author->name }}</h5>
-						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}  | <i>Reading time</i>: <span id="read_time"></span></p>
+						<p class="mg-left-15px"> Published: {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}  | <span id="read_time"></span> <i>Reading time</i></p>
 					</div>
 				</div>
 			</div>

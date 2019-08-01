@@ -16,18 +16,14 @@
     <!-- Scripts -->
 
 
-     <!-- Type aheaed -->
-    <script src="{{ asset('/js/typeahead/dist/typeahead.bundle.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/typeahead/dist/bloodhound.js') }}" type="text/javascript"></script>
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
 
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/author-blade/author-blade.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -107,7 +103,7 @@
 
     <!-- Bootstrap tags input -->
     <script src="{{asset('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
-
+    <script src="{{asset('/js/readtime/readtime.js')}}"></script>
     <script src="{{mix('js/app.js')}}" ></script>
 
 </body>
