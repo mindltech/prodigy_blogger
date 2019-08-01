@@ -37,6 +37,10 @@ Route::get('post/{post}/delete', 'PostController@destroy');
 Route::any('/search', 'HomeController@search');
 Route::get('/posts/{post}/like', 'LikeController@like');
 
-// Route::get('drop', function() {
-//     return Illuminate\Support\Facades\Schema::dropIfExists('likes');
-// });
+
+// Route::get('/error', 'HomeController@error');
+Route::get('drop', function() {
+    return Illuminate\Support\Facades\Schema::dropIfExists('likes');
+});
+
+Route::get('tag/{tag}/tag_post', 'TagController@tagpost');

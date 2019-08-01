@@ -134,6 +134,14 @@ class PostController extends Controller
         return view('my_post', ['posts' => $user_posts]);
     }
 
+    public function tagpost(Tag $tag)
+    {
+        $tag_post = $tag;
+       
+
+        return view('tag_post', ['tag' => $tag_post]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

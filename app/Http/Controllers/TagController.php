@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use App\Post;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -51,6 +52,12 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         //
+    }
+
+    public function tagpost(Tag $tag)
+    {
+        $posts = $tag->posts;
+        return view('tag_post', ['posts' => $posts]);
     }
 
     /**
