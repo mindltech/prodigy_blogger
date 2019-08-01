@@ -40,7 +40,7 @@ Route::get('/posts/{post}/like', 'LikeController@like');
 
 // Route::get('/error', 'HomeController@error');
 Route::get('drop', function() {
-    return Illuminate\Support\Facades\Schema::dropIfExists('likes');
+    return Illuminate\Support\Facades\Schema::dropIfExists('tags');
 });
 
 Route::get('tag/{tag}/tag_post', 'TagController@tagpost');
