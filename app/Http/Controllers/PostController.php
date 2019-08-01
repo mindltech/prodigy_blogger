@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\User;
-<<<<<<< HEAD
 use App\like;
-=======
 use App\Tag;
->>>>>>> 52cbc3e2a3f5290fa4f13af784c495d2a86a1148
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
