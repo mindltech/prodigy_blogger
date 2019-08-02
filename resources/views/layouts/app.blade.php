@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="{{mix('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{mix('css/app.css')}}">
+    
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,7 +24,6 @@
     <!-- Styles -->
 
     <link href="{{ asset('css/author-blade/author-blade.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -102,9 +102,9 @@
 
 
     <!-- Bootstrap tags input -->
+    <script src="{{mix('js/app.js')}}" ></script>
     <script src="{{asset('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('/js/readtime/readtime.js')}}"></script>
-    <script src="{{mix('js/app.js')}}" ></script>
 
 </body>
 
