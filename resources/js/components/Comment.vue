@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-    <button class="btn btn-success" style="float:right" type="button" data-toggle="modal" data-target="#exampleModal">comment</button>
+    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal" style="float: right; margin-top: -75px;" >comment</button>
 
 
     <!-- Modal -->
@@ -14,29 +14,67 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form @submit.prevent="getcomment()" method="post">
               <div class="form-group">
                 <label for="message-text" class="col-form-label">What's on your mind:</label>
-                <textarea class="form-control" id="message-text"></textarea>
+                <textarea class="form-control" id="message-text" name="comment" v-model="comment"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Comment</button>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Comment</button>
-          </div>
+          
         </div>
       </div>
     </div>
- 
+    <ul>
+      <li v-for="{comment, user, id} in thisComment" :key="id">
+        {{comment}}<br>
+        <em style="color: #636e72">by {{user.name}}</em>
+        <p style="float: right;">&times;</p>
+      <hr>
+        
+
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
     export default {
-        data: function() {
+        props:['posts', 'comments'],
+
+        data() {
             return {
+              comment: '', 
+              thisComment: this.comments
           }
         },
+
+        mounted(){
+          console.log('mounted');
+        },
+        watch:{
+          commentsData(){
+            this.comment = this.commentsData
+          }
+        },
+         methods:{
+            getcomment(){
+                axios.post('/posts/' + this.posts.id + '/comment', {
+                  comment: this.comment
+                })
+                    .then(response => {
+                        console.log(response.data);
+                        thisComment = response.data.comment;
+                        
+                    })
+                    .catch(err => console.error(err.data));
+            }
+          }
     }
 </script>
+          

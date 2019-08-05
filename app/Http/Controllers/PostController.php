@@ -119,8 +119,16 @@ class PostController extends Controller
     {
         $like = new like;
         $like->user_id = Auth::id();
-        $like->post_id = $request->id;
+        // $like->post_id = $return response()->json(['comment' => count($post->comment)], 201);
         $like->save();
+    }
+
+    public function comment(request $request)
+    {
+        $comment = new comment;
+        $comment->user_id = Auth::id();
+        $comment->post_id = $request->id;
+        $comment->save();
     }
 
     public function getpost()
@@ -184,7 +192,6 @@ class PostController extends Controller
             'image' => $image_url
         ]);
 
-        // $post->update($request->image_url());
         return redirect('/')->with(['update' => 'Post updated!']);
     }
 
@@ -200,11 +207,6 @@ class PostController extends Controller
 
         Storage::delete($post->image);
         $post->delete();
-        // dd($delete = Post::where('id', $id)->first());
-        //  $delete = Post::where('id', $id)->first();
-        //  $delete->delete();
-        // Session::put('success', 'Your Record Deleted Successfully.');
-        //  return redirect('/');
         return redirect()->back()->withSuccess('deleted');
     }
 }
