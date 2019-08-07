@@ -1,6 +1,10 @@
+<style>
+
+</style>
+
 <template>
     <div class="container">
-    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal" style="float: right; margin-top: -75px;" >comment</button>
+    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal" style="float: right; position: relative; bottom: 75px" >comment</button>
 
 
     <!-- Modal -->
@@ -29,13 +33,12 @@
         </div>
       </div>
     </div>
-    <ul>
-      <li v-for="{comment, user, id} in thisComment" :key="id">
+    <ul style="list-style: none;">
+      <li v-for="{ comment, user, id } in thisComment" :key="id"  v-on:delete-comment="deleteComment   ">
         {{comment}}<br>
         <em style="color: #636e72">by {{user.name}}</em>
-        <p style="float: right;">&times;</p>
-      <hr>
-        
+        <!-- <button type="button" style="float: right;" @click="$emit('delete-comment',comment)">&times;</button> -->
+      <hr>     
 
       </li>
     </ul>
@@ -57,23 +60,49 @@
         mounted(){
           console.log('mounted');
         },
-        watch:{
-          commentsData(){
-            this.comment = this.commentsData
-          }
-        },
+        // watch:{
+        //   commentsData(){
+        //     this.comment = this.commentsData
+        //   }
+        // },
          methods:{
             getcomment(){
                 axios.post('/posts/' + this.posts.id + '/comment', {
                   comment: this.comment
                 })
                     .then(response => {
-                        console.log(response.data);
-                        thisComment = response.data.comment;
+                        // console.log(response.data);  
+                        // console.log(this.thisComment);
+                        this.thisComment = response.data[0];
+                        this.comment = '';
+
+                        // console.log(this.thisComment);
+
                         
                     })
                     .catch(err => console.error(err.data));
-            }
+            },
+            // deleteComment(comment, id){
+            //     axios.get('/posts/' + this.post.id + '/delete')
+            //         // .then(response => {
+            //           // this.result.splice(id, 1)
+            //           // console.log(this.comment);
+            //         // });
+            //         .catch(err => console.error(err.data));
+            // }
+              //   deleteComment() {
+              //     this.$emit('comment-deleted', {
+              //         'id': this.comment.id,
+              //     });
+              // }
+              // deleteComment(comment){
+              //   this.$http.delete("/posts/" + this.post.id) 
+              //   .then(response => {
+              //     let index = this.comments.indexOf(comment);
+              //     this.comments.splice(index,1);
+              //     console.log(response.data);
+              //   })
+              // }
           }
     }
 </script>
