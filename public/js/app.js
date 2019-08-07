@@ -1745,6 +1745,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['posts', 'comments'],
   data: function data() {
@@ -37231,14 +37233,14 @@ var render = function() {
     _c(
       "ul",
       { staticStyle: { "list-style": "none" } },
-      _vm._l(_vm.thisComment, function(ref) {
-        var comment = ref.comment
-        var user = ref.user
-        var id = ref.id
-        return _c(
-          "li",
-          { key: id, on: { "delete-comment": _vm.deleteComment } },
-          [
+      [
+        _c("hr"),
+        _vm._v(" "),
+        _vm._l(_vm.thisComment, function(ref) {
+          var comment = ref.comment
+          var user = ref.user
+          var id = ref.id
+          return _c("li", { key: id }, [
             _vm._v("\n      " + _vm._s(comment)),
             _c("br"),
             _vm._v(" "),
@@ -37247,10 +37249,10 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("hr")
-          ]
-        )
-      }),
-      0
+          ])
+        })
+      ],
+      2
     )
   ])
 }

@@ -33,8 +33,10 @@
         </div>
       </div>
     </div>
+
     <ul style="list-style: none;">
-      <li v-for="{ comment, user, id } in thisComment" :key="id"  v-on:delete-comment="deleteComment   ">
+      <hr>
+      <li v-for="{ comment, user, id } in thisComment" :key="id">
         {{comment}}<br>
         <em style="color: #636e72">by {{user.name}}</em>
         <!-- <button type="button" style="float: right;" @click="$emit('delete-comment',comment)">&times;</button> -->

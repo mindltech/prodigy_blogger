@@ -12,7 +12,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'Prodigy Blogger') }}</title> -->
 
     <!-- Scripts -->
 
@@ -30,9 +30,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <!-- <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Prodigy Blogger') }}
+                </a> -->
+                <a class="navbar-brand" href="{{ url('/') }}">Prodigy Blogger</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,6 +57,7 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item ">
                                 <img style="height: 20px; width: 20px; border-radius: 50px; margin-top: 10px;" class="rounded-circles" src="{{ Storage::url(auth()->user()->profile->avatar) }}">
                             </li>
@@ -73,6 +75,10 @@
                                     <!-- Post -->
                                      <a class="dropdown-item" href="{{url('/my_post')}}">
                                         {{ __('My Posts') }}
+                                    </a>
+                                      <!-- Post -->
+                                     <a class="dropdown-item" href="{{ url('create/post') }}">
+                                        {{ __('Add Post') }}
                                     </a>
 
                                     <!-- Logout -->
