@@ -36,11 +36,11 @@ Route::get('users/{user}/@{username}', 'ProfileController@author');
 Route::get('post/{post}/delete', 'PostController@destroy');
 Route::any('/search', 'HomeController@search');
 Route::get('/posts/{post}/like', 'LikeController@like');
-
+Route::post('/posts/{post}/comment', 'CommentController@store');
 
 // Route::get('/error', 'HomeController@error');
-Route::get('drop', function() {
-    return Illuminate\Support\Facades\Schema::dropIfExists('tags');
-});
+// Route::get('drop', function() {
+//     return Illuminate\Support\Facades\Schema::dropIfExists('tags');
+// });
 
 Route::get('tag/{tag}/tag_post', 'TagController@tagpost');

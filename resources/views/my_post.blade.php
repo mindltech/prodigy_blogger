@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <a class="btn btn-primary btn-lg" style="float:right" href="{{ url('create/post') }}" role="button">Add post</a>
+    
       @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 <strong>Success!</strong> Your post has been deleted successfully.
