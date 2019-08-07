@@ -1742,6 +1742,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['posts', 'comments'],
   data: function data() {
@@ -1753,18 +1756,22 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log('mounted');
   },
-  watch: {
-    commentsData: function commentsData() {
-      this.comment = this.commentsData;
-    }
-  },
+  // watch:{
+  //   commentsData(){
+  //     this.comment = this.commentsData
+  //   }
+  // },
   methods: {
     getcomment: function getcomment() {
+      var _this = this;
+
       axios.post('/posts/' + this.posts.id + '/comment', {
         comment: this.comment
       }).then(function (response) {
-        console.log(response.data);
-        thisComment = response.data.comment;
+        // console.log(response.data);  
+        // console.log(this.thisComment);
+        _this.thisComment = response.data[0];
+        _this.comment = ''; // console.log(this.thisComment);
       })["catch"](function (err) {
         return console.error(err.data);
       });
@@ -37135,7 +37142,7 @@ var render = function() {
       "button",
       {
         staticClass: "btn btn-success",
-        staticStyle: { float: "right", "margin-top": "-75px" },
+        staticStyle: { float: "right", position: "relative", bottom: "75px" },
         attrs: {
           type: "button",
           "data-toggle": "modal",
@@ -37223,22 +37230,25 @@ var render = function() {
     _vm._v(" "),
     _c(
       "ul",
+      { staticStyle: { "list-style": "none" } },
       _vm._l(_vm.thisComment, function(ref) {
         var comment = ref.comment
         var user = ref.user
         var id = ref.id
-        return _c("li", { key: id }, [
-          _vm._v("\n      " + _vm._s(comment)),
-          _c("br"),
-          _vm._v(" "),
-          _c("em", { staticStyle: { color: "#636e72" } }, [
-            _vm._v("by " + _vm._s(user.name))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticStyle: { float: "right" } }, [_vm._v("×")]),
-          _vm._v(" "),
-          _c("hr")
-        ])
+        return _c(
+          "li",
+          { key: id, on: { "delete-comment": _vm.deleteComment } },
+          [
+            _vm._v("\n      " + _vm._s(comment)),
+            _c("br"),
+            _vm._v(" "),
+            _c("em", { staticStyle: { color: "#636e72" } }, [
+              _vm._v("by " + _vm._s(user.name))
+            ]),
+            _vm._v(" "),
+            _c("hr")
+          ]
+        )
       }),
       0
     )
