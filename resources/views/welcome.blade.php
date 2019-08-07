@@ -9,13 +9,13 @@
             <div class="input-group mb-3">
                 <input name="search" type="text" class="form-control" placeholder="what are you searching for?" aria-label="Search keyword" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </form>
+
+        <hr class="my-4">
             <h1 class="display-4">Welcome to Prodigy Blogger</h1>
-            <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="{{ url('create/post') }}" role="button">Add post</a>
         </div>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
