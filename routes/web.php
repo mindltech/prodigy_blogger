@@ -37,6 +37,7 @@ Route::get('post/{post}/delete', 'PostController@destroy');
 Route::any('/search', 'HomeController@search');
 Route::get('/posts/{post}/like', 'LikeController@like');
 Route::post('/posts/{post}/comment', 'CommentController@store');
+Route::get('/posts/{post}/delete', 'CommentController@destroy');
 
 // Route::get('/error', 'HomeController@error');
 // Route::get('drop', function() {

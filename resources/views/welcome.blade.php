@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron">
-        <form action="/search" method="POST" role="search">
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic">Welcome to Prodigy Blogger</h1>
+          <p class="lead my-3">This platform allows you to make post and read articles. Now go ahead and fill readers efficiently with the most interesting and exciting posts.</p>
+          <!-- <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p> -->
+          <form action="/search" method="POST" role="search">
             {{ csrf_field() }}
 
             <div class="input-group mb-3">
@@ -12,11 +16,12 @@
                     <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-        </form>
-
-        <hr class="my-4">
-            <h1 class="display-4">Welcome to Prodigy Blogger</h1>
+          </form>
         </div>
+      </div>
+      
+        
+     
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 <strong>Success!</strong> Your post has been deleted successfully.
@@ -35,6 +40,27 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
             </div>
         @endif
+        @if(count ($tags) > 0)
+         @foreach($tags as $tag)
+            <a href="{{ url('tag/'.$tag->id.'/tag_post') }}" class="p-2 text-muted">{{ $tag->name }}</a>
+         @endforeach
+        @endif
+        <!-- <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-d-flex justify-d-flex justify-content-betweencontent-betweend-flex justify-content-betweencontent-between">
+          <a class="p-2 text-muted" href="#">World</a>
+          <a class="p-2 text-muted" href="#">U.S.</a>
+          <a class="p-2 text-muted" href="#">Technology</a>
+          <a class="p-2 text-muted" href="#">Design</a>
+          <a class="p-2 text-muted" href="#">Culture</a>
+          <a class="p-2 text-muted" href="#">Business</a>
+          <a class="p-2 text-muted" href="#">Politics</a>
+          <a class="p-2 text-muted" href="#">Opinion</a>
+          <a class="p-2 text-muted" href="#">Science</a>
+          <a class="p-2 text-muted" href="#">Health</a>
+          <a class="p-2 text-muted" href="#">Style</a>
+          <a class="p-2 text-muted" href="#">Travel</a>
+            </nav>
+       </div> -->
 
         @if(count($posts) > 0)
             <div class="row">
@@ -42,7 +68,7 @@
             <div class="col-lg-4">
                 <div class="card m-1 shadow">
                     @if($post->image)
-                        <img class="card-img-top p-3 mb-5 bg-white rounded" src="{{ Storage::url($post->image) }}" alt="">
+                        <img class="card-img-top p-3 mb-5 bg-white rounded"  src="{{ Storage::url($post->image) }}" alt="">
                     @endif
 
                     <div class="card-body">
@@ -106,10 +132,18 @@
             </div>
             @endforeach
             </div>
+
         @else
         <div class="alert alert-info" role="alert">
             There are no posts.
         </div>
         @endif
+    <hr>
+    <footer class="blog-footer text-center">
+      <p>Blog app built by Dimola and Segun .</p>
+      <p>
+        <a href="{{ url('/') }}"><i class="fa fa-chevron-up"></i></a>
+      </p>
+    </footer>
     </div>
 @endsection

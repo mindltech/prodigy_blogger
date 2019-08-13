@@ -50,21 +50,21 @@
 			<h1 class="font-sm padding-4 mg-top-15px">{{ $post->title }}</h1>
 			<p class="padding-auto-3">{{ str_limit($post->body, $limit = 250, $end = '...') }}</p>
 			<p style="opacity: 0; height: 0px;" id="post_body">{{ $post->body }}</p>
-			<ul class='nav nav-pills card-body'>
-                <li role='presentation'>
-                    <a href="{{url('post/'.$post->id.'/show')}}">
-                        <span><i class="fa fa-eye"></i> View </span>
-                    </a>
-                    @if(auth()->check() && auth()->id() === $post->user->id)
-                    <a href="{{url('post/'.$post->id.'/edit')}}">
-                        <span> <i class="fa fa-edit"></i> Edit </span>
-                    </a>
-                    <a href="{{url('post/'.$post->id.'/delete')}}">
-                        <span> <i class="fa fa-trash"></i> Delete</span>
-                    </a>
-                    @endif
-                </li>
-            </ul>
+      <ul class='nav nav-pills card-body'>
+          <li role='presentation'>
+          <div class="btn-group">
+             <button class="navbar-toggler toggler-example purple darken-3" type="button" data-toggle="dropdown"
+             data-target="#navbarSupportedContent41" aria-controls="navbarSupportedContent41" aria-expanded="false"
+             aria-label="Toggle navigation"><span class="white-text"><i class="fa fa-ellipsis-v"></i></span>
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+               <a class="dropdown-item" href="{{url('post/'.$post->id.'/show')}}" style="color: black">View</a>
+               @if(auth()->check() && auth()->id() === $post->user->id)
+               <a class="dropdown-item" href="{{url('post/'.$post->id.'/edit')}}" style="color: black">Edit</a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal-{{ $post->id }}" style="color: black">Delete</a>
+               @endif
+               </div>
+             </div>
 		</div>
 		@endforeach
 	</div>

@@ -23,7 +23,7 @@
         <Like :likes="{{ $post->likes->count() }}" :post="{{ $post }}" :userliked="{{ json_encode(((bool) \App\Like::where('user_id', auth()->id())->where('post_id', $post->id)->first())) }}"></Like>
      </div>
 
-        <Comment :comments="{{ $post->comments }}" :posts="{{ $post }}" style= "display: inline-block;"></Comment>
+        <Comment :comments="{{ $post->comments }}" :posts="{{ $post }}" ></Comment>
     
 
      <!-- <script src="{{mix('js/app.js')}}"></script> -->
