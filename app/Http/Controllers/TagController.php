@@ -20,6 +20,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
+        
     }
 
     /**
@@ -56,8 +57,9 @@ class TagController extends Controller
 
     public function tagpost(Tag $tag)
     {
+        // dd($tag->posts);
         $posts = $tag->posts;
-        return view('tag_post', ['posts' => $posts]);
+        return view('tag_post', ['posts' => $posts]);   
     }
 
     /**

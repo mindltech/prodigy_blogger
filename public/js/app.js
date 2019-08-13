@@ -1743,10 +1743,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['posts', 'comments'],
   data: function data() {
@@ -1758,11 +1754,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log('mounted');
   },
-  // watch:{
-  //   commentsData(){
-  //     this.comment = this.commentsData
-  //   }
-  // },
   methods: {
     getcomment: function getcomment() {
       var _this = this;
@@ -1770,14 +1761,43 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/posts/' + this.posts.id + '/comment', {
         comment: this.comment
       }).then(function (response) {
-        // console.log(response.data);  
-        // console.log(this.thisComment);
         _this.thisComment = response.data[0];
         _this.comment = ''; // console.log(this.thisComment);
       })["catch"](function (err) {
         return console.error(err.data);
       });
-    }
+    },
+    deleteComment: function deleteComment(post, index) {
+      var _this2 = this;
+
+      // this.comments.splice(this.comments.indexOf(event), 1)
+      axios.get('/posts/' + this.post.id + '/delete').then(function (response) {
+        _this2.comments.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } // deleteComment(comment, id){
+    //     axios.get('/posts/' + this.post.id + '/delete')
+    //         // .then(response => {
+    //           // this.result.splice(id, 1)
+    //           // console.log(this.comment);
+    //         // });
+    //         .catch(err => console.error(err.data));
+    // }
+    //   deleteComment() {
+    //     this.$emit('comment-deleted', {
+    //         'id': this.comment.id,
+    //     });
+    // }
+    // deleteComment(comment){
+    //   this.$http.delete("/posts/" + this.post.id) 
+    //   .then(response => {
+    //     let index = this.comments.indexOf(comment);
+    //     this.comments.splice(index,1);
+    //     console.log(response.data);
+    //   })
+    // }
+
   }
 });
 

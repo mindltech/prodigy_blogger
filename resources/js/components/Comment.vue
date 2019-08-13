@@ -1,7 +1,3 @@
-<style>
-
-</style>
-
 <template>
     <div class="container">
     <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModal" style="float: right; position: relative; bottom: 75px" >comment</button>
@@ -39,7 +35,7 @@
       <li v-for="{ comment, user, id } in thisComment" :key="id">
         {{comment}}<br>
         <em style="color: #636e72">by {{user.name}}</em>
-        <!-- <button type="button" style="float: right;" @click="$emit('delete-comment',comment)">&times;</button> -->
+        <!-- <button type="button" style="float: right;" @click="deleteComment(comment.post)">&times;</button> -->
       <hr>     
 
       </li>
@@ -62,19 +58,12 @@
         mounted(){
           console.log('mounted');
         },
-        // watch:{
-        //   commentsData(){
-        //     this.comment = this.commentsData
-        //   }
-        // },
          methods:{
             getcomment(){
                 axios.post('/posts/' + this.posts.id + '/comment', {
                   comment: this.comment
                 })
                     .then(response => {
-                        // console.log(response.data);  
-                        // console.log(this.thisComment);
                         this.thisComment = response.data[0];
                         this.comment = '';
 
@@ -84,6 +73,16 @@
                     })
                     .catch(err => console.error(err.data));
             },
+            deleteComment(post, index) {
+            // this.comments.splice(this.comments.indexOf(event), 1)
+              axios.get('/posts/' + this.post.id + '/delete')
+              .then(response => {
+                  this.comments.splice(index, 1);
+              })
+              .catch(error => {
+                  console.log(error);
+              })       
+          }
             // deleteComment(comment, id){
             //     axios.get('/posts/' + this.post.id + '/delete')
             //         // .then(response => {
