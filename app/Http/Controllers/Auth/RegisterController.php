@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Profile;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.
@@ -78,7 +79,15 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
         ]);
-        
+        if ($user->email === 'priceandsally@gmail.com') {
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'admin')->first());
+        }else {
+            $user
+                ->roles()
+                ->attach(Role::where('name', 'user')->first());
+        }
         $this->createProfile($user, $data);
         return $user;
 
@@ -103,4 +112,5 @@ class RegisterController extends Controller
         ]);
 
     }
+    
 }

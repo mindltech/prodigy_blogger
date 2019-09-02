@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <div class='container'>
         <form action="{{url('/store/post')}}" enctype='multipart/form-data' method = "POST">
@@ -28,4 +29,5 @@
             <button type="submit" class="btn btn-primary">Publish</button>
         </form>
     </div>
+    
 @endsection

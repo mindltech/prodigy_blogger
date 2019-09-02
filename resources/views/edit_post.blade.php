@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class='container'>
         <form action="/post/{{ $post->id }}" enctype='multipart/form-data' method = "POST">
         {{ csrf_field() }}
@@ -13,7 +14,7 @@
 
             <div class="form-group">
     <label for="exampleFormControlTextarea1">Body</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" name="body"  value="{{ str_limit($post->body, $limit = 150, $end = '...') }}" placeholder="Tell your story" rows="10">{{ str_limit($post->body, $limit = 150, $end = '...') }}</textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="body"  value="{!! str_limit($post->body, $limit = 150, $end = '...') !!}" placeholder="Tell your story" rows="10">{!! str_limit($post->body, $limit = 150, $end = '...') !!}</textarea>
   </div>
   <img src="{{ Storage::url($post->image) }}" style='max-width:20%' alt="">
   <div class="form-group">
@@ -24,4 +25,12 @@
             <button type="submit" class="btn btn-primary">Update</button>
             </form>
     </div>
+@endsection
+@section('custom_scripts')
+<script>
+        tinymce.init({
+            selector: 'exampleFormControlTextarea1',
+            skin: true
+        })
+    </script>
 @endsection
