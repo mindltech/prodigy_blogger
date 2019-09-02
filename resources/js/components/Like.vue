@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <button class="btn btn-success" @click="liked()">{{ disabled ? 'like' : 'unlike' }}</button>
+                <button class="btn btn-success" @click="liked()">{{ !like ? 'like' : 'unlike' }}</button>
                 <p style='color:#7f8c8d'> You have {{ like }}  like(s) </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
         data(){
             return {
-                like: this.likes,
+                like: 0,
                 disabled: this.userliked,
             }
         },
@@ -30,7 +30,10 @@
                     .then(response => {
                         console.log(response.data);
                         this.like = response.data.likes;
-                        Boolean(this.disabled) ? this.disabled = false : this.disabled = true;
+                        console.log(this.disabled)
+                        console.log(this.like)
+                        this.disabled ? this.disabled = false : this.disabled = true;
+                        
                     })
                     .catch(err => console.error(err.data));
             }
