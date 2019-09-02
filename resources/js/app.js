@@ -3,9 +3,17 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import axios from 'axios';
-import Vue from 'vue'
-import VueAxios from 'vue-axios'
+import Vue from 'vue';
+import VueAxios from 'vue-axios';
+import tinymce from 'tinyMCE';
+// const loadTiny= () => {
 
+//     tinymce.init({
+//         selector: 'textarea'
+//     });
+
+// };
+// loadTiny();
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
@@ -19,5 +27,5 @@ Vue.component('comment', require('./components/Comment').default);
 
 
 const app = new Vue({
-    el: '#app',  
+    el: '#app',
 });

@@ -20,8 +20,19 @@
         </div>
       </div>
       
-        
-     
+        @if (session('posts'))
+            <div class="alert alert-succes alert-dismissible fade show">
+                <strong>Success!</strong> Result found.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
+        @if (session('noposts'))
+            <div class="alert alert-succes alert-dismissible fade show">
+                <strong>Success!</strong> No result found.
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
+
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 <strong>Success!</strong> Your post has been deleted successfully.
@@ -45,22 +56,6 @@
             <a href="{{ url('tag/'.$tag->id.'/tag_post') }}" class="p-2 text-muted">{{ $tag->name }}</a>
          @endforeach
         @endif
-        <!-- <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-flex justify-d-flex justify-d-flex justify-content-betweencontent-betweend-flex justify-content-betweencontent-between">
-          <a class="p-2 text-muted" href="#">World</a>
-          <a class="p-2 text-muted" href="#">U.S.</a>
-          <a class="p-2 text-muted" href="#">Technology</a>
-          <a class="p-2 text-muted" href="#">Design</a>
-          <a class="p-2 text-muted" href="#">Culture</a>
-          <a class="p-2 text-muted" href="#">Business</a>
-          <a class="p-2 text-muted" href="#">Politics</a>
-          <a class="p-2 text-muted" href="#">Opinion</a>
-          <a class="p-2 text-muted" href="#">Science</a>
-          <a class="p-2 text-muted" href="#">Health</a>
-          <a class="p-2 text-muted" href="#">Style</a>
-          <a class="p-2 text-muted" href="#">Travel</a>
-            </nav>
-       </div> -->
 
         @if(count($posts) > 0)
             <div class="row">
@@ -73,7 +68,7 @@
 
                     <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
-                    <p class="card-text">{{ str_limit($post->body, $limit = 150, $end = '...') }}</p>
+                    <p class="card-text">{!! str_limit($post->body, $limit = 150, $end = '...') !!}</p>
 
                     @foreach($post->tags as $tag)
                     <a href="{{ url('tag/'.$tag->id.'/tag_post') }}" class="badge badge-dark">{{ $tag->name }}</a>
@@ -110,7 +105,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                     <a href="{{url('post/'.$post->id.'/delete')}}"><button type="button" class="btn btn-danger">Yes</button></a>
                                 </div>
-                                </div>
+                                </div> 
                             </div>
                             </div>
 

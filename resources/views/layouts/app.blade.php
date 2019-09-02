@@ -81,7 +81,12 @@
                                      <a class="dropdown-item" href="{{ url('create/post') }}">
                                         {{ __('Add Post') }}
                                     </a>
-
+                                    @if(auth()->check() && auth()->user()->hasRole('admin'))
+                                    <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                        {{ __('Dashboard') }}
+                                    </a>
+                                    @endif
+                                    
                                     <!-- Logout -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -112,6 +117,7 @@
     <script src="{{mix('js/app.js')}}" ></script>
     <script src="{{asset('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('/js/readtime/readtime.js')}}"></script>
+    @yield('custom_scripts')
 
 </body>
 

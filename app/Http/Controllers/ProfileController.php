@@ -82,16 +82,19 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
+        //dd($request);
+        // $data = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'username' => 'required|string|max:255|unique:users',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'phone' => 'required|max:15|string',
+        //     'gender' => 'required|string',
+        //     'bio' => 'required|string|max:255',
+        //     'address' => 'required|string|max:255'
+        //     ]);
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|max:15|string',
-            'gender' => 'required|string',
-            'bio' => 'required|string|max:255',
-            'address' => 'required|string|max:255'
-        ]);
+            //dd($data);
+            
 
         // dd(auth()->user()->profile);
    
@@ -102,21 +105,21 @@ class ProfileController extends Controller
 
         $updated = $profile->update([
             // update the values here
-            'name' =>$data['name'],
-            'username' =>$data['username'],
-            'email' =>$data['email'],
-            'phone_number' =>$data['phone'],
-            'gender' =>$data['gender'],
-            'bio' =>$data['bio'],
-            'address' =>$data['address'],
+            'name' =>$request->name,
+            'username' =>$request->username,
+            'email' =>$request->email,
+            'phone_number' =>$request->phone,
+            'gender' =>$request->gender,
+            'bio' =>$request->bio,
+            'address' =>$request->address,
             'avatar' =>$avatar_url
         ]);
 
         $user = $profile->user()->update([
-            'name' =>$data['name'],
-            'username' =>$data['username'],
-            'email' => $data['email'],
-            'gender' => $data['gender']
+            'name' =>$request->name,
+            'username' =>$request->username,
+            'email' => $request->email,
+            'gender' => $request->gender
         ]);
 
 

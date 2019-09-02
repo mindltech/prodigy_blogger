@@ -8,7 +8,7 @@
         @if($post->image)
             <img class="card-img-top p-3 mb-5 bg-white rounded" src="{{ Storage::url($post->image) }}" alt="">
         @endif
-        <p class="card-text">{{ str_limit($post->body, $limit = 3500, $end = '...') }}</p>
+        <p class="card-text">{!! str_limit($post->body, $limit = 3500, $end = '...') !!}</p>
     </div>
     <main class="py-4">
     <!-- @if(auth()->check()) -->

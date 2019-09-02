@@ -17,7 +17,7 @@ Route::get('/create/post', 'PostController@create');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/welcome', 'HomeController@index')->name('welcome')->middleware('verified');
 // Route::get('try',function(){
 //     return App\post::with('user','likes')->get();
 // });
@@ -45,3 +45,6 @@ Route::get('/posts/{post}/delete', 'CommentController@destroy');
 // });
 
 Route::get('tag/{tag}/tag_post', 'TagController@tagpost');
+Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/users/{user}', 'HomeController@role');
+Route::post('/users/{user}', 'HomeController@update');

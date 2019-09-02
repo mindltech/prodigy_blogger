@@ -13,6 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
+					@if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <strong>Success!</strong> User profile updated successfully.
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-error alert-dismissible fade show">
+                            <strong>Success!</strong> Something went wrong! Ensure you are filling all required field.
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        </div>
+                    @endif
 
                     <div class="media">
                     	<img style="height: 100px; width: 100px; background-color: cyan; border-radius: 50px; " src="{{Storage::url($user->profile->avatar)}}" class="align-self-start mr-3 rounded-circles" alt="profile-avatar">
