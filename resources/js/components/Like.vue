@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <button class="btn btn-success" @click="liked()">{{ !like ? 'like' : 'unlike' }}</button>
+                <button class="btn btn-success" @click="liked">{{ disabled ? 'like' : 'unlike' }}</button>
                 <p style='color:#7f8c8d'> You have {{ like }}  like(s) </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
         data(){
             return {
-                like: 0,
+                like: this.likes,
                 disabled: this.userliked,
             }
         },
@@ -28,12 +28,9 @@
             liked(){
                 axios.get('/posts/' + this.post.id + '/like')
                     .then(response => {
-                        console.log(response.data);
                         this.like = response.data.likes;
-                        console.log(this.disabled)
-                        console.log(this.like)
-                        this.disabled ? this.disabled = false : this.disabled = true;
-                        
+                        // console.log(this.like)
+                        this.disabled = !this.disabled;                        
                     })
                     .catch(err => console.error(err.data));
             }

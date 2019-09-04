@@ -13,6 +13,10 @@ import VueAxios from 'vue-axios';
 Vue.component('like', require('./components/Like').default);
 // Vue.component('comment', require('./components/Comment.vue').default);
 Vue.component('comment', require('./components/Comment').default);
+
+Vue.component('posts', require('./components/Posts').default);
+
+Vue.component('search', require('./components/Search').default);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 

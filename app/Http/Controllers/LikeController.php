@@ -21,12 +21,12 @@ class LikeController extends Controller
     {
         // like button
     
-        if ((bool) Like::where('user_id', auth()->id())->where('post_id', $post->id)->first()) {
-            $post->likes()->detach(auth()->user());
+        // if ((bool) Like::where('user_id', auth()->id())->where('post_id', $post->id)->first()) {
+        //     $post->likes()->detach(auth()->user());
 
-            return response()->json(['likes' => count($post->likes)], 201);
-        }
-        $post->likes()->attach(auth()->user());
+        //     return response()->json(['likes' => count($post->likes)], 201);
+        // }
+        $post->likes()->toggle(auth()->user());
 
         return response()->json(['likes' => count($post->likes)], 201);  
 

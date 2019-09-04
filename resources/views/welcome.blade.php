@@ -7,16 +7,7 @@
           <h1 class="display-4 font-italic">Welcome to Prodigy Blogger</h1>
           <p class="lead my-3">This platform allows you to make post and read articles. Now go ahead and fill readers efficiently with the most interesting and exciting posts.</p>
           <!-- <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p> -->
-          <form action="/search" method="POST" role="search">
-            {{ csrf_field() }}
-
-            <div class="input-group mb-3">
-                <input name="search" type="text" class="form-control" placeholder="what are you searching for?" aria-label="Search keyword" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-          </form>
+          
         </div>
       </div>
       

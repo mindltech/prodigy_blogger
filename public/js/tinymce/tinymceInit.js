@@ -2,7 +2,7 @@
 (() => {
 
     tinymce.init({
-        selector: 'textarea'
+        selector: '#exampleFormControlTextarea1'
     });
 
 })();

@@ -34,7 +34,7 @@ Route::get('/my_post', 'PostController@getpost')->name('my_post');
 Route::get('users/{user}/@{username}', 'ProfileController@author');
 
 Route::get('post/{post}/delete', 'PostController@destroy');
-Route::any('/search', 'HomeController@search');
+Route::post('/search', 'HomeController@search');
 Route::get('/posts/{post}/like', 'LikeController@like');
 Route::post('/posts/{post}/comment', 'CommentController@store');
 Route::get('/posts/{post}/delete', 'CommentController@destroy');
