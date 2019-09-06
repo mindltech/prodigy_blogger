@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <link rel="stylesheet" type="text/css" href="{{mix('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
     <!-- <title>{{ config('app.name', 'Prodigy Blogger') }}</title> -->
 
     <!-- Scripts -->
-
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,7 +24,7 @@
     <!-- Styles -->
 
     <link href="{{ asset('css/author-blade/author-blade.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/welcome-blade/welcome-blade.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,7 +34,7 @@
                     {{ config('app.name', 'Prodigy Blogger') }}
                 </a> -->
                 <a class="navbar-brand " href="{{ url('/') }}">Prodigy Blogger</a>
-
+                <Search :posts="{{ $posts }}"></Search>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -117,6 +117,8 @@
     <script src="{{mix('js/app.js')}}" ></script>
     <script src="{{asset('/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('/js/readtime/readtime.js')}}"></script>
+    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('/js/tinymce/tinymceInit.js')}}"></script>
     @yield('custom_scripts')
 
 </body>

@@ -25,8 +25,9 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $tags = Tag::all();
-
+        // dd($posts);
         return view('welcome', ['posts' => $posts, 'tags' => $tags]);
+        return response()->json(['posts' => $posts, 'tags' => $tags]);
     }
 
     /**
@@ -36,7 +37,8 @@ class PostController extends Controller
      */
     public function create(Post $post)
     {
-        return view('create_post', ['user' => auth()->user()]);
+        $posts = Post::all();
+        return view('create_post', ['user' => auth()->user(), 'posts' => $posts]);
     }
 
     /**

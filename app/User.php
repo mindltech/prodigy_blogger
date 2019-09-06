@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // public $with = ['post'];
     protected $fillable = [
         'name', 'username', 'email', 'gender', 'password',
     ];

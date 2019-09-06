@@ -8,7 +8,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
-{
+{   
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,18 +41,20 @@ class HomeController extends Controller
     {
        
         $tags = Tag::all();
-        $keyword = $request->input('search');
+        $keyword = $request->search;
 
         $match = Post::where('title', 'LIKE', '%' . $keyword . '%')
             ->orWhere('body', 'LIKE', '%' . $keyword . '%')
             ->get();
-
             if ($match)
             {
                 return view('welcome', ['posts' => $match, 'tags' => $tags]);
+                // return response()->json(['posts' => $match, 'tags' => $tags]);
             }else {
-                return view('welcome', ['noposts' => 'no match found!']);
+                // return ('welcome', ['noposts' => 'no match found!']);
+                // return response()->json(['noposts' => 'no match found!']);
             }
+            dd($match);
 
 
         // if (count($match) > 0) {
@@ -62,11 +64,12 @@ class HomeController extends Controller
 
     public function dashboard(Request $request)
     {
+        $posts = Post::all();
         $users = User::all();
         $authorized = $request->user()->authorizeRoles('admin');
         // dd($users);
 
-        return view('dashboard', ['authozized' => $authorized, 'users' => $users]);
+        return view('dashboard', ['authozized' => $authorized, 'users' => $users, 'posts' => $posts]);
     }
 
     public function update(Request $request, User $user, Role $role )
