@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $tags = Tag::all();
-
+        // dd($posts);
         return view('welcome', ['posts' => $posts, 'tags' => $tags]);
         return response()->json(['posts' => $posts, 'tags' => $tags]);
     }

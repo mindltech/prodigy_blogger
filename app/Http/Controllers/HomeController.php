@@ -46,15 +46,15 @@ class HomeController extends Controller
         $match = Post::where('title', 'LIKE', '%' . $keyword . '%')
             ->orWhere('body', 'LIKE', '%' . $keyword . '%')
             ->get();
-
             if ($match)
             {
-                // return view('welcome', ['posts' => $match, 'tags' => $tags]);
-                return response()->json(['posts' => $match, 'tags' => $tags]);
+                return view('welcome', ['posts' => $match, 'tags' => $tags]);
+                // return response()->json(['posts' => $match, 'tags' => $tags]);
             }else {
                 // return ('welcome', ['noposts' => 'no match found!']);
                 // return response()->json(['noposts' => 'no match found!']);
             }
+            dd($match);
 
 
         // if (count($match) > 0) {

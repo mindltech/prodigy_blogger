@@ -26,9 +26,13 @@
   "dependencies": {
     "axios": "^0.18.1",
     "laue": "^0.2.1",
+    "moment": "^2.24.0",
     "tinymce": "^5.0.15",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
-    "vue-js-toggle-button": "^1.3.2"
+    "vue-js-toggle-button": "^1.3.2",
+    "vue-moment": "^4.0.0",
+    "vue-moment-lib": "^1.2.2",
+    "vue-truncate-collapsed": "^2.1.0"
   }
 }

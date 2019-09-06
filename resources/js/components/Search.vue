@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit.prevent="getpost" action="/search" method="POST" role="search">
+    <form @submit.prevent="getpost" method="POST" role="search">
          <div class="input-group mb-3">
              <input v-model="search" name="search" type="text" class="form-control" placeholder="what are you searching for?" aria-label="Search keyword" aria-describedby="basic-addon2">
              <div class="input-group-append">
@@ -27,17 +27,17 @@ export default {
     },
 
     mounted: function() {
-      console.log(this.results)
+      console.log(this.posts)
     },
 
     methods:{
-      getpost() {
-        axios.post('/search',{search: this.search})
-        .then(response => {
-          this.results = response.data.posts;
-          console.log(this.results[0])
-        })
-      }
+      // getpost() {
+      //   axios.post('/search',{search: this.search})
+      //   .then(response => {
+      //     this.results = response.data.posts;
+      //     console.log(this.results[0])
+      //   })
+      // }
     }
 
 }

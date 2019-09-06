@@ -24,7 +24,7 @@
     <!-- Styles -->
 
     <link href="{{ asset('css/author-blade/author-blade.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/welcome-blade/welcome-blade.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

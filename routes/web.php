@@ -38,12 +38,6 @@ Route::post('/search', 'HomeController@search');
 Route::get('/posts/{post}/like', 'LikeController@like');
 Route::post('/posts/{post}/comment', 'CommentController@store');
 Route::get('/posts/{post}/delete', 'CommentController@destroy');
-
-// Route::get('/error', 'HomeController@error');
-// Route::get('drop', function() {
-//     return Illuminate\Support\Facades\Schema::dropIfExists('tags');
-// });
-
 Route::get('tag/{tag}/tag_post', 'TagController@tagpost');
 Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/users/{user}', 'HomeController@role');
